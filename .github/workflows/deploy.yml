@@ -33,7 +33,8 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd ${{ secrets.BACKEND_PATH }}
-            git pull origin main
+            git fetch origin main
+            git reset --hard origin/main
             composer install --no-interaction --prefer-dist --optimize-autoloader
             php artisan migrate --force
             php artisan config:cache
